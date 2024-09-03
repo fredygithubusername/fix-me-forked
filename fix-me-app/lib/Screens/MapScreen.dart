@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../Components/GoogleMapComponent.dart';
 import '../Models/ModelsData.dart';
 
 class MapScreen extends StatelessWidget {
@@ -33,11 +32,13 @@ class MapScreen extends StatelessWidget {
                   Provider.of<TaskData>(context, listen: false)
                       .polylinesInTaskData;
 
-              return GoogleMapWidget(
-                cameraPositionLatLng:
-                    LatLng(currentLogUserLatitude, currentLogUserLongitude),
-                polylines: polylines,
-                markers: <Marker>{
+              return GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(nearestMechanicLocationLatitude,
+                      nearestMechanicLocationLongitude),
+                  zoom: 16.5,
+                ),
+                markers: {
                   Marker(
                     markerId: MarkerId('Log User Location'),
                     position:
@@ -49,6 +50,7 @@ class MapScreen extends StatelessWidget {
                         nearestMechanicLocationLongitude),
                   )
                 },
+                polylines: Set<Polyline>.of(polylines.values),
               );
             } else {
               return CircularProgressIndicator();
