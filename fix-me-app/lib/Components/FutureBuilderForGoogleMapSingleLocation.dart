@@ -12,25 +12,29 @@ class GoogleMapForMechanicOnlineScreenLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<GetCurrentLocationClass>(context, listen: false)
+    // Provider.of<GetCurrentLocationClass>(context, listen: false)
+    //     .startListeningForLocationUpdates();
+    context
+        .read<GetCurrentLocationClass>()
         .startListeningForLocationUpdates();
+    print("############################################################################################# ${Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLongitude}");
 
     return Consumer<GetCurrentLocationClass>(
       builder: (context, locationData, _) {
-        if (locationData.currentLogUserLongitude != null &&
-            locationData.currentLogUserLatitude != null) {
+        if (Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLongitude != null &&
+            Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLatitude != null) {
           return GoogleMapWidget(
             cameraPositionLatLng: LatLng(
-              locationData.currentLogUserLatitude ?? 0.0,
-              locationData.currentLogUserLongitude ?? 0.0,
+              Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLatitude ?? 0.0,
+              Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLongitude ?? 0.0,
             ),
             polylines: {},
             markers: <Marker>{
               Marker(
                 markerId: MarkerId('Log User Location'),
                 position: LatLng(
-                  locationData.currentLogUserLatitude ?? 0.0,
-                  locationData.currentLogUserLongitude ?? 0.0,
+                  Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLatitude ?? 0.0,
+                  Provider.of<GetCurrentLocationClass>(context, listen: true).currentLogUserLongitude ?? 0.0,
                 ),
               ),
             },

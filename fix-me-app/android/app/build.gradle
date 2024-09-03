@@ -50,7 +50,8 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        minSdkVersion 20
+        minSdkVersion flutter.minSdkVersion
+        compileSdkVersion 34
     }
 
     buildTypes {
@@ -61,7 +62,7 @@ android {
         }
     }
 
-    compileSdkVersion 34
+
 }
 
 flutter {
@@ -70,5 +71,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
