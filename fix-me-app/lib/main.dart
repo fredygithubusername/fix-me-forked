@@ -117,6 +117,8 @@ class _MyAppState extends State<MyApp> {
             '/register': (context) => Register(),
             '/mechanicOnlineMapScreen': (context) => MechanicOnlineScreen(),
             '/map': (context) => TestMessage(),
+            // '/ClientDetails': (context) => ClientDetails()
+            //   '/test': (context) => FutureBuilderForGoogleMapSingleLocation(),
           },
         );
       },
